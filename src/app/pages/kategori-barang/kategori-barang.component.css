@@ -1,0 +1,39 @@
+label {
+    font-weight: bold;
+}
+
+.modal-title {
+    font-weight: bold;
+}
+
+.modal-body{
+    height: 250px;
+}
+
+.modal-footer button {
+    width: 100%;
+    background-color: black;
+    color: white;
+    height: 50px;
+}
+
+.modal-footer button:hover {
+    width: 100%;
+    background-color: white;
+    color: black;
+    height: 50px;
+}
+
+.modal-body input{
+    height: 50px;
+}
+
+.modal-body input:hover{
+    border: solid 2px rgb(173, 173, 173);
+}
+
+.spinner-custom{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}

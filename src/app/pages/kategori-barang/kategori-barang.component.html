@@ -1,0 +1,150 @@
+<!-- <ng-template #add let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Tambah Kategori Barang</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="mb-3">
+            <label class="form-label">ID Kategori Barang</label>
+            <input type="text" class="form-control" placeholder="ID Kategori Barang" disabled>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Nama Kategori Barang</label>
+            <input type="text" class="form-control" placeholder="Nama Kategori Barang" [(ngModel)]="iKategoriBarang.namaKategoriBarang">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="onCreate()">Simpan</button>
+    </div>
+</ng-template> -->
+
+
+<ng-template #update let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit Kategori Barang</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="mb-3">
+            <label class="form-label">ID Kategori Barang</label>
+            <input type="text" class="form-control" placeholder="ID Kategori Barang" disabled>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Nama Kategori Barang</label>
+            <input type="text" class="form-control" placeholder="Nama Kategori Barang">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-outline-dark" (click)="onCreate()">Simpan</button> -->
+    </div>
+</ng-template>
+
+
+<div class="container mt-5">
+    <div class="d-flex mt-3 mb-3 justify-content-between align-items-center">
+        <h4>
+            Kategori Barang
+        </h4>
+
+        <!-- <Button class="btn btn-dark" (click)="open(add)">
+
+        <Button class="btn btn-dark" (click)="openAdd(add)">
+            Tambah Kategori Barang
+        </Button> -->
+
+        <app-modal [customButton]="'btn btn-dark'" [customCard]="" [customFooter]="tambahButtons">
+            <div trigger>Tambah Kategori Barang</div>
+            <div head>Tambah Kategori Barang</div>
+            <div content>
+                <div class="col form-group">
+                    <div class="row mb-4">
+                        <label class="form-label">ID Kategori Barang</label>
+                        <input type="text" class="form-control" placeholder="ID Kategori Barang" disabled>
+                    </div>
+                    <div class="row">
+                        <label class="form-label">Nama Kategori Barang</label>
+                        <input type="text" class="form-control" placeholder="Nama Kategori Barang"
+                            [(ngModel)]="iKategoriBarang.namaKategoriBarang">
+                    </div>
+                </div>
+            </div>
+        </app-modal>
+    </div>
+    <input type="text" [(ngModel)]="keyword" (input)="search(keyword)" class="form-control mt-3 mb-3 bi bi-search"
+        placeholder="Cari kategori barang...">
+    <table class="table table-secondary" style="box-sizing: border-box;">
+        <thead>
+            <tr>
+                <th scope="col">ID Kategori Barang</th>
+                <th scope="col">Nama Kategori Barang</th>
+                <th scope="col">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of kategoris">
+                <td scope="row" class="table-light">{{item.idKategoriBarang}}</td>
+                <td class="table-light">{{item.namaKategoriBarang}}</td>
+                <td class="table-light">
+                    <div class="d-flex justify-content-around" style="box-sizing: border-box; gap: 10px;">
+
+                        <button class="btn btn-outline-dark col-5 text-center"
+                            (click)="onDelete(item)"><span>Hapus</span></button>
+
+                        <button class="btn btn-outline-dark col-5 text-center"
+                            style="background-color: black; color: white;"><span>Edit</span></button>
+
+                       
+                        <!-- <button class="btn btn-outline-dark col-5 text-center"
+                            (click)="onDelete(item)"><span>Hapus</span></button>
+                        <button class="btn btn-outline-dark col-5 text-center"
+                            (click)="openUpdate(update, item)"><span>Edit</span></button> -->
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="isLoading" class="d-flex spinner-custom">
+        <div class="spinner-border" role="status"></div>
+    </div>
+</div>
+
+<!-- <ng-template #add let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Tambah Kategori Barang</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="mb-3">
+            <label class="form-label">ID Kategori Barang</label>
+            <input type="text" class="form-control" placeholder="ID Kategori Barang" disabled>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Nama Kategori Barang</label>
+            <input type="text" class="form-control" placeholder="Nama Kategori Barang"
+                [(ngModel)]="iKategoriBarang.namaKategoriBarang">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="onCreate()">Simpan</button>
+    </div>
+</ng-template>
+
+<ng-template #update let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Ubah Kategori Barang</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form (submit)="onUpdate()">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nama Kategori Barang</label>
+                <input type="text" class="form-control" id="name" name="name" required
+                    [(ngModel)]="upKategori.namaKategoriBarang">
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+            </div>
+        </form>
+    </div>
+</ng-template> -->

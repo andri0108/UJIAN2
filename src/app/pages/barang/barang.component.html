@@ -1,0 +1,128 @@
+
+<div class="row"></div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex mt-3 mb-3 justify-content-between align-items-center">
+        <h4>
+          Transaksi
+        </h4>
+        <Button class="btn btn-dark" (click)="open(content)">
+          Pilih Supplier
+        </Button>
+      </div>
+
+
+        <table class="table table-secondary" style="box-sizing: border-box;">
+          <thead>
+              <tr>
+                  <th scope="col">ID Kategori Barang</th>
+                  <th scope="col">Deskripsi</th>
+                  <th scope="col">Nama Barang</th>
+                  <th scope="col">Harga</th>
+                  <th scope="col">Qty</th>
+                  <th scope="col">Subtotal</th>
+              </tr>
+          </thead>
+          <tbody>
+             
+          </tbody>
+      </table>   
+         
+<ng-template #content let-modal>
+  
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">PIlih Suplier</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body" >
+			<div class="mb-3">
+        <div class="row">
+          <div class="col-md-12">
+          </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+          <input type="text" class="form-control mt-3 mb-3 bi bi-search" placeholder="search" >
+          <div class="alert alert-success" role="alert" *ngIf="hasil.status==201">
+            {{ hasil.message }}
+          </div>
+          <table class="table table-dark table-striped-columns" style="box-sizing: border-box;">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Alamat</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Aksi</th>            
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let i of barang ">
+                <td scope="row" class="table-light">{{ i._id }}</td>
+                <td class="table-light">{{ i.alamat }}</td>
+                <td class="table-light">{{ i.nama }}</td>
+                <td class="table-light" >
+                  <div class="d-flex justify-content-around" style="box-sizing: border-box; gap: 10px;">
+                    <button class="btn btn-outline-dark col-5 text-center" (click)="openEdit(content2,i)"><span>PILIH</span></button> 
+                    <!-- <button class="btn btn-outline-dark col-7 text-center"(click)="deleteBarang(i)"><span>Hapus</span></button> -->
+                  </div>  
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+</ng-template>
+
+
+<ng-template #content2 let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title_update">Update Barang</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+			<div class="mb-3">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label for="nama_barang">Nama Barang:</label>
+              <input type="text" class="form-control" id="nama_barang" [(ngModel)]="upBarang.idBarang"  name="NamaBarang" >
+            </div>
+            <div class="mb-3">
+              <label for="nama_barang">Nama Barang:</label>
+              <input type="text" class="form-control" id="nama_barang" [(ngModel)]="upBarang.namaBarang" name="NamaBarang" >
+            </div>
+            <div class="mb-3">
+              <label for="deskripsi">Deskripsi:</label>
+              <input type="text" class="form-control" id="deskripsi"   [(ngModel)]="upBarang.deskripsi" name="deskripsi">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label for="id_kategori">ID Kategori:</label>
+              <!-- <input type="text" class="form-control" placeholder="id_kategori" [(ngModel)]="kategoriBarang"> -->
+              <select class="form-select" aria-label="Default select example" [(ngModel)]="katBarang" aria-placeholder="Pilih">
+                <option value="{{ list.idKategoriBarang }}"  *ngFor="let list of listKategoriBarang">{{ list.namaKategoriBarang }}</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="id_kategori">Suplier:</label>
+              <select class="form-select" aria-label="Default select example" [(ngModel)]="supplier" aria-placeholder="Pilih">
+                <option value="{{ list.idSupplier }}"  *ngFor="let list of listSupplier">{{ list.namaSupplier }}</option>
+              </select>
+              <!-- <label for="id_suplier">ID Suplier:</label>
+              <input type="text" class="form-control"  placeholder="id_suplier" [(ngModel)]="supplier"> -->
+            </div>
+          </div>
+        </div>       
+			</div>
+	</div>
+	
+  <button type="button" class="btn btn-secondary btn-lg btn-block"(click)="modal.close('Save click')" (click)="updateBarang()">Save</button>
+</ng-template>
+
+
+
+<hr />

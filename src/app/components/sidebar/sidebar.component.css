@@ -1,0 +1,39 @@
+.sidebar {
+  width: 25vw;
+  border-right: 1px solid lightgray;
+  padding: 1.5rem;
+  height: 100vh;
+}
+
+.logo {
+  font-size: 1.5rem;
+  color: black;
+  text-decoration: none;
+  display: block;
+}
+
+.logo > span {
+  display: block;
+  margin-bottom: 1.75rem;
+}
+
+.sidebar-nav {
+  list-style: none;
+  padding: 1.125rem 14px;
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 1.75rem;
+}
+
+.nav-link {
+  padding: 0.625rem;
+  border-radius: 0.25rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+}
+
+.nav-link.active {
+  background-color: lightgrey;
+  background-color: rgb(244, 244, 244);
+  border: 1px solid lightgrey;
+}

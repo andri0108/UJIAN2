@@ -1,0 +1,23 @@
+<nav class="sidebar" *ngIf="shouldShowNavbar()">
+  <a class="logo fw-bold text-uppercase" href="#">Toko <span>Maju Mundur</span></a>
+  <div class="sidebar-nav">
+    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/kategori']">
+      Kategori
+    </a>
+    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/barang']">
+      Barang
+    </a>
+    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/supplier']">
+      Supplier
+    </a>
+    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/transaksi']">
+      Transaksi
+    </a>
+    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/keranjang']">
+      Keranjang
+    </a>
+  </div>
+  <button class="btn btn-dark" type="button" aria-label="Logout" (click)="logout()">
+    Logout
+  </button>
+</nav>

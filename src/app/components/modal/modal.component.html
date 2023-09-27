@@ -1,0 +1,39 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" [class]="customButton" (click)="openModal()">
+    <ng-content select=[trigger]></ng-content>
+</button>
+
+<!-- Modal -->
+<div class="modal-container" [ngClass]="{'open': isOpen}">
+    <div class="overlay" (click)="closeModal()"></div>
+
+    <div class="card w-50 overflow-hidden border-0" [class]="customCard">
+        <div class="modal-dialog w-100">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 ms-4 fw-bold" id="exampleModalLabel"><ng-content
+                            select=[head]></ng-content></h1>
+                    <button type="button" class="btn-close m-4" data-bs-dismiss="modal" aria-label="Close"
+                        (click)="closeModal()"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="container w-auto">
+                        <ng-content select=[content]></ng-content>
+                    </div>
+                </div>
+                <div class="modal-footer mt-5">
+                    <div class="d-flex w-100">
+                        <button *ngFor="let button of customFooter" type="button" (click)="handleButtonClick(button.onButtonClick)" class="flex-fill btn btn-primary text-uppercase" [class]="button.class">{{ button.label }}</button>
+
+                        <!-- <button  type="button" (click)="handleButtonClick()"
+                            class="flex-fill btn btn-primary bg-dark rounded-0 border-0 p-3 text-uppercase">Simpan</button> -->
+
+                    </div>
+                    <!-- <button footer type="button" (click)="handleButtonClick()" class="btn btn-primary w-100 bg-dark rounded-0 border-0 p-3 text-uppercase">Simpan</button> -->
+                    <!-- <ng-content select=[footer]></ng-content> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
